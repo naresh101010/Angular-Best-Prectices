@@ -14,8 +14,10 @@ import * as jwt_decode from 'jwt-decode';
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  
+  private localStorageUser = JSON.parse(localStorage.getItem('user'))
 
-  constructor(
+  constructor (
     private apiService: ApiService,
     private http: HttpClient,
     private jwtService: JwtService
@@ -23,7 +25,7 @@ export class UserService {
     // if user persist in localstroage and token has expired then set the current user to null
     // this.isTokenExpired() == true || token has expired
     if(this.localStorageUser && this.isTokenExpired()){
-      this.localStorageUser = null;
+        this.localStorageUser = null;
     }
     this.currentUserSubject = new BehaviorSubject<User>((this.localStorageUser) as User);
     this.currentUser = this.currentUserSubject.asObservable();    
@@ -41,7 +43,7 @@ export class UserService {
 
 
   setAuth(user: User) {
-    console.log(this.isTokenExpired(user.token))
+    console.log(this.isTokenExpired())
     // Save JWT sent from server in localstorage
     this.jwtService.saveToken(user);
 
@@ -79,15 +81,6 @@ export class UserService {
     }             
   }
 
-
-   /**
-    * return true if token expired
-    * 
-    * */ 
-  isTokenExpired(token):boolean{
-      let decodeToken = jwt_decode(token);      
-       return decodeToken; 
-  }
 
 
 

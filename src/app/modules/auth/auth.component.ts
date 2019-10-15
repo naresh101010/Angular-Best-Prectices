@@ -30,16 +30,6 @@ export class AuthComponent {
   }
 
   ngOnInit() { 
-<<<<<<< HEAD
-    // if localhost have token or current user exist then redirect to dashboard
-    // else logout it 
-    if(this.userService.currentUserValue){
-       this.router.navigate(['/dashboard'])
-    }else{
-      this.userService.logout();
-    }
-            
-=======
     // if token expire 
     if(this.userService.isTokenExpired()){
       this.userService.logout();
@@ -47,7 +37,6 @@ export class AuthComponent {
       this.router.navigate(['/dashboard'])
     }
     
->>>>>>> aea389de3195c23a7f938a59252e782666297eed
   }
   
   
