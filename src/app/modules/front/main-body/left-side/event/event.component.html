@@ -1,0 +1,7 @@
+<h3>Events</h3>
+<ul class="nav nav-pills flex-column" *ngIf="events?.length > 0" >
+  <li class="nav-item" *ngFor="let item of events">
+         <a class="nav-link" href="#">{{item.name}}</a>
+  </li> 
+</ul>
+<hr class="d-sm-none">
