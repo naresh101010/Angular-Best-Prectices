@@ -47,14 +47,14 @@ export class AuthComponent {
    * return void  
    */
   changeMode(loginMode:string):void {
-    //change screen
+    //if loginMode is login then set authType to login else set register
     loginMode == 'login' ? this.authType = 'login' : this.authType = 'register';    
     //change title
     this.title = (loginMode === 'login') ? 'Sign in' : 'Sign up';
 
-    if(loginMode == 'register'){
+    if(loginMode == 'register') {
       // add form control for username if this is the register page
-      if (this.authType === 'register') {
+      if (this.authType === 'register'){
         this.authForm.addControl('username', new FormControl());
       } 
     }
@@ -71,9 +71,7 @@ export class AuthComponent {
     .attemptAuth(this.authType, credentials)
     .subscribe(
       data => {   
-        console.log(this.userService.getCurrentUser())     
-        this.router.navigateByUrl('/dashboard')
-        
+        this.router.navigateByUrl('/dashboard')        
       },
       err => {
         this.errors = err;

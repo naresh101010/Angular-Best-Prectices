@@ -12,7 +12,7 @@ export class EventComponent implements OnInit {
   events: Object[];
 
   constructor(private ApiService:ApiService) {
-    console.log(EventComponent)
+    // console.log(EventComponent)
    }
 
   ngOnInit() {

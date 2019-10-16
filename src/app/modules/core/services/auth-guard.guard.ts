@@ -8,17 +8,15 @@ export class AuthGuard implements CanActivate {
         private router: Router,
         private UserService:UserService
     ) { }
-    canActivate() {
+    canActivate() {        
         const currentUser = this.UserService.currentUserValue;        
+        
         //if user persist
         if (currentUser) {          
             return true;
         }
-
         // if user not persist then remove token 
-        this.UserService.logout();        
-        this.router.navigate(['/auth']); 
-        
+        this.UserService.logout();                       
         //return false for gaurd route
         return false;
     }

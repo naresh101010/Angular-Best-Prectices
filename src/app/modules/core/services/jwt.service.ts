@@ -5,7 +5,7 @@ import { User } from '../models';
 @Injectable({ providedIn: 'root' })
 export class JwtService {
 
-  getToken(): String {
+  getToken(): string {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       return user.token
